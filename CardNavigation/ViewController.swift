@@ -10,16 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+    let cardTransitioningDelegate = CardTransitioningDelegate()
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "DestinationSBIdentifier") as? DestinationViewController {
+            controller.transitioningDelegate = cardTransitioningDelegate
+            controller.modalPresentationStyle = .custom
+            present(controller, animated: true)
+        }
     }
-
 
 }
-
